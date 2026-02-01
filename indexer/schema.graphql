@@ -1,6 +1,41 @@
 type Account {
-  # id is the address of the account
+  # id: accountAddress-tokenAddress
   id: ID!
   # account balance of tokens
   balance: BigInt!
+}
+
+type Mints {
+  # id: startOfTheHourTimestamp-tokenAddress
+  id: ID!
+  # timestamp representing the start of the hour
+  hourStart: BigInt!
+  # mints during the hour
+  value: BigInt!
+  # delete index for easy removal
+  deleteIndex: BigInt! @index
+  # token address
+  token: String!
+}
+
+type Burns {
+  # id: startOfTheHourTimestamp-tokenAddress
+  id: ID!
+  # timestamp representing the start of the hour
+  hourStart: BigInt!
+  # burns during the hour
+  value: BigInt!
+  # delete index for easy removal
+  deleteIndex: BigInt! @index
+  # token address
+  token: String!
+}
+
+type GloablState {
+  # singleton id
+  id: ID!
+  # delete index for easy removal
+  curentIndex: BigInt!
+  # current hour timestamp
+  currentHourStart: BigInt!
 }
